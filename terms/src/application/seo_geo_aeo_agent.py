@@ -104,9 +104,10 @@ def run_research(website: str, n: int = 10, model: str = DEFAULT_MODEL, context:
     agent = build_agent(model)
 
     content = (
-        f"Website: {domain}\n"
-        f"Return the top {n} search terms people use to find this site, "
-        f"with a reason for each term's ranking position."
+        f"""Understand the business of the Website: {domain}\n.
+        Find its competitors and the industry it operates in.\n
+        Return the top {n} search terms people use to find this site, 
+        with a reason for each term's ranking position."
     )
     if context.strip():
         content += f"\n\nContext: {context.strip()}"
