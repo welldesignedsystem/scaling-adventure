@@ -106,7 +106,7 @@ def run_research(website: str, n: int = 10, model: str = DEFAULT_MODEL, context:
     content = (
         f"""Understand the business of the Website: {domain}\n.
         Find its competitors and the industry it operates in.\n
-        Return the top {n} search terms people use to find this site, 
+        Return the most common top {n} search terms people use to find sites like this, ranked from most to least popular. For each term, include a one-sentence reason explaining why it ranks at that position (e.g. high search volume, strong brand match, competitor gap, or long-tail intent).
         with a reason for each term's ranking position."""
     )
     if context.strip():

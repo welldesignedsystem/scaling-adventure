@@ -57,7 +57,7 @@ function App() {
   return (
     <div className="page-shell">
       <header className="hero-card">
-        <h1>Search Term Explorer</h1>
+        <h1>Search Query Term Explorer</h1>
         <p>Enter a website or domain and query the backend API for the top search terms people use to find it.</p>
       </header>
 
