@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import * as XLSX from "xlsx";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -54,6 +55,35 @@ function App() {
     }
   };
 
+  const downloadExcel = () => {
+    const rows = terms.map((item, index) => ({
+      Rank: index + 1,
+      Term: item.term,
+      Reason: item.reason,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Search Terms");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    const dateStamp = new Date().toISOString().slice(0, 10);
+    anchor.download = `search-terms-${normalizeWebsite(website)}-${dateStamp}.xlsx`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="page-shell">
       <header className="hero-card">
@@ -105,8 +135,15 @@ function App() {
 
         <section className="panel results-panel">
           <div className="results-header">
-            <h2>Search terms</h2>
-            <span className="tag">API: {apiBaseUrl}</span>
+            <div>
+              <h2>Search terms</h2>
+              <span className="tag">API: {apiBaseUrl}</span>
+            </div>
+            {terms.length > 0 && (
+              <button type="button" className="secondary-button" onClick={downloadExcel}>
+                Download Excel
+              </button>
+            )}
           </div>
 
           {status === "idle" && (

@@ -122,6 +122,22 @@ textarea:focus {
   filter: brightness(1.05);
 }
 
+.secondary-button {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  background: transparent;
+  color: #e7edf6;
+  padding: 14px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.secondary-button:hover {
+  background: rgba(99, 102, 241, 0.16);
+  transform: translateY(-1px);
+}
+
 .alert {
   padding: 14px 16px;
   border-radius: 14px;
