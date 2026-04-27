@@ -1,3 +1,8 @@
+---
+name: audit-seo-geo-aeo
+description: Audit websites for Search Engine Optimization (SEO), Generative Engine Optimization (GEO), and Answer Engine Optimization (AEO)
+---
+
 # SEO / GEO / AEO Audit Skill for Copilot & VS Code
 
 ## Purpose
